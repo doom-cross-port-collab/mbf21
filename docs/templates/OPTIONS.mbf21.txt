@@ -37,3 +37,4 @@ comp_ledgeblock 1
 comp_friendlyspawn 1
 comp_voodooscroller 0
 comp_reservedlineflag 1
+comp_thingsectorlight 0

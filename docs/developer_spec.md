@@ -487,24 +487,28 @@ MBF21 defaults:
 - comp_reservedlineflag: [commit](https://github.com/kraflab/dsda-doom/commit/5287a80982ce290a035a8fe0aa3e35582ca119cb), [commit](https://github.com/kraflab/dsda-doom/commit/ee84aef86f3d9005d30f330666e3c172f785c819)
   - When on: the line flag 0x0800 clears extended flags (`flags &= 0x01ff`).
   - When off: the line flag 0x0800 means nothing.
+- comp_thingsectorlight: [PR](https://github.com/kraflab/dsda-doom/pull/820)
+  - When on: sprites that are on sectors using Boom's floor/ceiling transfered light levels will use the average of those two values.
+  - When off: sprites will always be drawn with the Mobj's sector's light level.
 
 Summary of comp flags since mbf in pr+ and changes:
 
-| Name                  | Index | Default | Description                                    |
-|-----------------------|-------|---------|------------------------------------------------|
-| comp_moveblock-       | 19    | 0       | Large negative displacements are mishandled    |
-| comp_respawn*         | 20    | 0       | Creatures with no spawnpoint respawn at (0,0)  |
-| comp_sound-           | 21    | 0       | Assorted sound errors                          |
-| comp_666-             | 22    | 0       | Buggy pre-udoom boss checks                    |
-| comp_soul*            | 23    | 0       | Lost souls do not bounce                       |
-| comp_maskedanim-      | 24    | 0       | Two-sided midtextures don't animate            |
-| comp_ouchface-        | 25    | 0       | Buggy vanilla ouchface code                    |
-| comp_maxhealth-       | 26    | 0       | Max health in deh only applies to potions      |
-| comp_translucency-    | 27    | 0       | Disable some predefined translucency           |
-| comp_ledgeblock       | 28    | 1       | Ledges block ground enemies                    |
-| comp_friendlyspawn    | 29    | 1       | A_Spawn new thing inherits friendliness        |
-| comp_voodooscroller   | 30    | 0       | Voodoo dolls on slow scrollers move too slowly |
-| comp_reservedlineflag | 31    | 1       | Line flag 0x0800 clears extended flags         |
+| Name                  | Index | Default | Description                                                        |
+|-----------------------|-------|---------|--------------------------------------------------------------------|
+| comp_moveblock-       | 19    | 0       | Large negative displacements are mishandled                        |
+| comp_respawn*         | 20    | 0       | Creatures with no spawnpoint respawn at (0,0)                      |
+| comp_sound-           | 21    | 0       | Assorted sound errors                                              |
+| comp_666-             | 22    | 0       | Buggy pre-udoom boss checks                                        |
+| comp_soul*            | 23    | 0       | Lost souls do not bounce                                           |
+| comp_maskedanim-      | 24    | 0       | Two-sided midtextures don't animate                                |
+| comp_ouchface-        | 25    | 0       | Buggy vanilla ouchface code                                        |
+| comp_maxhealth-       | 26    | 0       | Max health in deh only applies to potions                          |
+| comp_translucency-    | 27    | 0       | Disable some predefined translucency                               |
+| comp_ledgeblock       | 28    | 1       | Ledges block ground enemies                                        |
+| comp_friendlyspawn    | 29    | 1       | A_Spawn new thing inherits friendliness                            |
+| comp_voodooscroller   | 30    | 0       | Voodoo dolls on slow scrollers move too slowly                     |
+| comp_reservedlineflag | 31    | 1       | Line flag 0x0800 clears extended flags                             |
+| comp_thingsectorlight | 32    | 0       | MObjs are lit according to the average of transferred light levels |
 
 - Comp options marked with a `-` have been deoptionalized in mbf21 (forced to `0`). Many of these have nothing to do with demo compatibility - others are simple bug fixes.
 - Comp options marked with a `*` are already implemented in EE.
@@ -529,7 +533,7 @@ Summary of comp flags since mbf in pr+ and changes:
 - Header options block:
 
 | Key                   | Bytes |
-|-----------------------|--------------|
+|-----------------------|-------|
 | monsters_remember     | 1     |
 | weapon_recoil         | 1     |
 | player_bobbing        | 1     |
@@ -572,10 +576,12 @@ Summary of comp flags since mbf in pr+ and changes:
 | comp_friendlyspawn    | 1     |
 | comp_voodooscroller   | 1     |
 | comp_reservedlineflag | 1     |
+| comp_thingsectorlight | 1     |
 
 - The comp list size is variable - take care when reading demos.
   - If the comp list size is <24, then comp_voodooscroller equals 1.
   - If the comp list size is <25, then comp_reservedlineflag equals 0.
+  - If the comp list size is <26, then comp_thingsectorlight equals 0.
 
 #### Fixes / adjustments since mbf
 - Fix 3 key door bug

@@ -42,3 +42,4 @@ See the templates [here](./templates/). For [Ultimate Doom](./templates/OPTIONS.
 | comp_friendlyspawn    | Spawned things inherit the friend attribute from the source    |             1 |      1 |    1 |   1 |     1 |
 | comp_voodooscroller   | Voodoo dolls on slow scrollers move too slowly                 |             0 |      0 |    0 |   1 |     0 |
 | comp_reservedlineflag | The line flag 0x0800 disables extended flags                   |             1 |      1 |    1 |   1 |     1 |
+| comp_thingsectorlight | Sprites are lit up by the average of transferred light levels  |             0 |      0 |    0 |   1 |     0 |
