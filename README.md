@@ -1,4 +1,4 @@
-# Modder's Best Friend aka MBF21 v1.5
+# Modder's Best Friend aka MBF21 v1.4
 MBF21 is the next step in the classical / conservative feature progression from doom to boom to mbf. The project has these goals:
 
 - Fix bugs and miscellaneous issues in mbf.
@@ -18,8 +18,6 @@ The specification is available in different formats to suit different audiences:
 - OPTIONS lump [examples](./docs/options.md).
 
 ### Version History
-- v1.5
-  - Added comp_thingsectorlight option (Boom-transferred sector light level behaves more predictably)
 - v1.4
   - Added comp_reservedlineflag option (ignore extended flags when set).
 - v1.3
