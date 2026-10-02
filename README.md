@@ -30,7 +30,7 @@ The specification is available in different formats to suit different audiences:
   - Original release
 
 ##### About the Project
-The formal effort officially began in [March 2021](https://www.doomworld.com/forum/topic/120616-lets-talk-about-mbf-a-new-complevel/). Following extensive discussions and investigations, kraflab and Xaser delivered the first implementation of the specification in [dsda-doom](https://github.com/kraflab/dsda-doom) two months later.
+The formal effort officially began in [March 2021](https://www.doomworld.com/forum/topic/120616-lets-talk-about-mbf-a-new-complevel/). Following extensive discussions and investigations, kraflab and Xaser delivered the first implementation of the specification in [dsda-doom](https://github.com/dsda-org/dsda-doom) two months later.
 
 ##### Collaborators
 - AlexMax
