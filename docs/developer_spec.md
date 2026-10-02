@@ -5,7 +5,7 @@ The contents of this file are aimed at developers, with links to relevant code a
 ## Sectors
 
 #### Instant death sector special
-- [Implementation](https://github.com/kraflab/dsda-doom/blob/07639e2f1834c6d6ae5a37c720e01d52c2c95d4d/prboom2/src/p_spec.c#L2437-L2463)
+- [Implementation](https://github.com/dsda-org/dsda-doom/blob/07639e2f1834c6d6ae5a37c720e01d52c2c95d4d/prboom2/src/p_spec.c#L2437-L2463)
 - Bit 12 (4096) turns on "alternate damage meaning" for bit 5 & 6:
 
 | Dec | Bit 6-5 | Description                                                   |
@@ -16,21 +16,21 @@ The contents of this file are aimed at developers, with links to relevant code a
 | 96  | 11      | Kills all players and exits the map (secret exit)             |
 
 #### Kill monsters sector special
-- [PR](https://github.com/kraflab/dsda-doom/pull/18)
+- [PR](https://github.com/dsda-org/dsda-doom/pull/18)
 - Bit 13 turns on "kill monsters" flag for sectors - kills grounded monsters.
 
 ## Lines
 
 #### Block land monsters line flag
-- [PR](https://github.com/kraflab/dsda-doom/pull/19)
+- [PR](https://github.com/dsda-org/dsda-doom/pull/19)
 - Uses bit 12 (4096).
 
 #### Block players line flag
-- [commit](https://github.com/kraflab/dsda-doom/commit/687237e3d236056730f58dca27efd45e1774d53e)
+- [commit](https://github.com/dsda-org/dsda-doom/commit/687237e3d236056730f58dca27efd45e1774d53e)
 - Uses bit 13 (8192).
 
 #### Line scroll special variants
-- [PR](https://github.com/kraflab/dsda-doom/pull/29)
+- [PR](https://github.com/dsda-org/dsda-doom/pull/29)
 - Scroll like special 255, but also apply the scroll to all other linedefs which share the same tag.
 - The scrolling speed is divided by 8 to give more fine-grained control.
 - 1024 is without control sector / acceleration.
@@ -40,7 +40,7 @@ The contents of this file are aimed at developers, with links to relevant code a
 ## Things
 
 #### Dehacked Thing Groups
-- [PR](https://github.com/kraflab/dsda-doom/pull/22), [PR](https://github.com/kraflab/dsda-doom/pull/23)
+- [PR](https://github.com/dsda-org/dsda-doom/pull/22), [PR](https://github.com/dsda-org/dsda-doom/pull/23)
 
 ##### Infighting
 - Add `Infighting group = N` in Thing definition.
@@ -88,7 +88,7 @@ In this example:
 - Note that the group numbers are separate - being in infighting group 1 doesn't mean you are in projectile group 1.
 
 #### New Thing Flags
-- [commit](https://github.com/kraflab/dsda-doom/commit/10907e5d37dc2337c93f6dd59573fd42c5a8aaf6)
+- [commit](https://github.com/dsda-org/dsda-doom/commit/10907e5d37dc2337c93f6dd59573fd42c5a8aaf6)
 - Add `MBF21 Bits = X` in the Thing definition.
 - The format is the same as the existing `Bits` field.
 - Example: `MBF21 Bits = LOGRAV+DMGIGNORED+MAP07BOSS1`.
@@ -118,19 +118,19 @@ In this example:
 | MF2_FULLVOLSOUNDS  |                    | 0x40000 | Full volume see / death sounds (cyberdemon, mastermind)                                        |
 
 #### Rip sound
-- [commit](https://github.com/kraflab/dsda-doom/commit/3d9fc1cccc7b85c527331e74802dd25d94a80b10)
+- [commit](https://github.com/dsda-org/dsda-doom/commit/3d9fc1cccc7b85c527331e74802dd25d94a80b10)
 - When set, this is the sound that plays for ripper projectiles when they rip through something.
 - Add `Rip sound = X` in the Thing definition.
 - `X` is the sound index, as seen in other sound fields.
 
 #### Fast speed
-- [PR](https://github.com/kraflab/dsda-doom/pull/37), [commit](https://github.com/kraflab/dsda-doom/commit/ad8304b7df2a6fde2c26f6241eb40e00e954cb58)
+- [PR](https://github.com/dsda-org/dsda-doom/pull/37), [commit](https://github.com/dsda-org/dsda-doom/commit/ad8304b7df2a6fde2c26f6241eb40e00e954cb58)
 - Sets the thing speed for skill 5 / -fast.
 - Add `Fast speed = X` in the Thing definition.
 - `X` has the same units as the normal `Speed` field.
 
 #### Melee range
-- [PR](https://github.com/kraflab/dsda-doom/pull/46)
+- [PR](https://github.com/dsda-org/dsda-doom/pull/46)
 - Sets the range at which a monster will initiate a melee attack.
 - Also affects the range for vanilla melee attack codepointers, e.g. A_SargAttack, A_TroopAttack, etc.
   - Similarly, adjusting the player mobj's melee range will adjust the range of A_Punch and A_Saw
@@ -140,7 +140,7 @@ In this example:
 ## Weapons
 
 #### Weapon Flags
-- [PR](https://github.com/kraflab/dsda-doom/pull/27)
+- [PR](https://github.com/dsda-org/dsda-doom/pull/27)
 - Add `MBF21 Bits = X` in the Weapon definition.
 - The format is the same as the existing thing `Bits` field.
 - Example: `MBF21 Bits = SILENT+NOAUTOFIRE`.
@@ -170,7 +170,7 @@ MBF21 defaults:
 | Super Shotgun   |                                         |
 
 #### Ammo pickup weapon autoswitch changes
-- [PR](https://github.com/kraflab/dsda-doom/pull/26)
+- [PR](https://github.com/dsda-org/dsda-doom/pull/26)
 - Weapon autoswitch on ammo pickup now accounts for the ammo per shot of a weapon, as well as the `NOAUTOSWITCHTO` and `AUTOSWITCHFROM` weapon flags, allowing more accuracy and customization of this behaviour.
 - If the current weapon is enabled for `AUTOSWITCHFROM` and the player picks up ammo for a different weapon, autoswitch will occur for the highest ranking weapon (by index) matching these conditions:
   - player has the weapon
@@ -180,7 +180,7 @@ MBF21 defaults:
   - player now has enough ammo to fire the weapon
 
 #### New DEHACKED "Ammo per shot" Weapon field
-- [PR](https://github.com/kraflab/dsda-doom/pull/24)
+- [PR](https://github.com/dsda-org/dsda-doom/pull/24)
 - Add `Ammo per shot = X` in the Weapon definition.
 - Value must be a nonnegative integer.
 - Tools should assume this value is undefined for all vanilla weapons (i.e. always write it to the patch if the user specifies any valid value)
@@ -196,7 +196,7 @@ MBF21 defaults:
 ## Frames
 
 #### Frame Flags
-- [PR](https://github.com/kraflab/dsda-doom/pull/37)
+- [PR](https://github.com/dsda-org/dsda-doom/pull/37)
 - Add `MBF21 Bits = X` in the Frame definition.
 - The format is the same as the existing thing `Bits` field.
 - Example: `MBF21 Bits = SKILL5FAST`.
@@ -207,14 +207,14 @@ MBF21 defaults:
 | SKILL5FAST | 0x001 | Tics halve on nightmare skill (demon) |
 
 #### New "Args" fields for DEHACKED states
-- [PR](https://github.com/kraflab/dsda-doom/pull/30)
+- [PR](https://github.com/dsda-org/dsda-doom/pull/30)
 - Defines 8 new integer fields in the state table for use as codepointer arguments
 - Args are defined in dehacked by adding `Args1 = X`, `Args2 = X`... up to `Args8 = X` in the State definition.
 - Default value for each arg is determined by the frame's codepointer. For ease of implementation, DEHACKED tools may wish to simply pass through any args that are explicitly set by the user (i.e. assume the default value is undefined).
 - For future-proofing, if args are defined on a state than its action pointer expects (e.g. defining Args3 on a state that uses A_WeaponSound), an error must be thrown on startup.
 
 #### New DEHACKED Codepointers
-- [PR](https://github.com/kraflab/dsda-doom/pull/20), [PR](https://github.com/kraflab/dsda-doom/pull/38), [PR](https://github.com/kraflab/dsda-doom/pull/40), [PR](https://github.com/kraflab/dsda-doom/pull/41), [PR](https://github.com/kraflab/dsda-doom/pull/45), [PR](https://github.com/kraflab/dsda-doom/pull/49)
+- [PR](https://github.com/dsda-org/dsda-doom/pull/20), [PR](https://github.com/dsda-org/dsda-doom/pull/38), [PR](https://github.com/dsda-org/dsda-doom/pull/40), [PR](https://github.com/dsda-org/dsda-doom/pull/41), [PR](https://github.com/dsda-org/dsda-doom/pull/45), [PR](https://github.com/dsda-org/dsda-doom/pull/49)
 - All new MBF21 pointers use the new "Args" fields for params, rather than misc1/misc2 fields
 - Arg fields are listed in order in the docs below, e.g. for `A_SpawnObject`, `type` is Args1, `angle` is Args2, etc.
 - Although all args are integers internally, there are effectively the following types of args:
@@ -475,19 +475,19 @@ MBF21 defaults:
 ## Miscellaneous
 
 #### New comp flags
-- comp_ledgeblock: [commit](https://github.com/kraflab/dsda-doom/commit/4423cbcf8580e4d3839ddf4403b1fb4a0f993507)
+- comp_ledgeblock: [commit](https://github.com/dsda-org/dsda-doom/commit/4423cbcf8580e4d3839ddf4403b1fb4a0f993507)
   - Ledges block ground enemies
-  - Exception: movement due to scrolling / pushers / pullers disables comp_ledgeblock for the next xy movement: [commit](https://github.com/kraflab/dsda-doom/commit/db8c3d606ed23dfb6b2408c4ddbf0af91d33f3de)
-- comp_friendlyspawn: [PR](https://github.com/kraflab/dsda-doom/pull/34)
+  - Exception: movement due to scrolling / pushers / pullers disables comp_ledgeblock for the next xy movement: [commit](https://github.com/dsda-org/dsda-doom/commit/db8c3d606ed23dfb6b2408c4ddbf0af91d33f3de)
+- comp_friendlyspawn: [PR](https://github.com/dsda-org/dsda-doom/pull/34)
   - When on: A_Spawn new thing inherits friend flag from source thing.
   - When off: A_Spawn new thing keeps its default friend flag.
-- comp_voodooscroller: [PR](https://github.com/kraflab/dsda-doom/pull/81)
+- comp_voodooscroller: [PR](https://github.com/dsda-org/dsda-doom/pull/81)
   - When on: voodoo dolls on slow scrollers move too slowly
   - When off: voodoo dolls move the same speed as the floor
-- comp_reservedlineflag: [commit](https://github.com/kraflab/dsda-doom/commit/5287a80982ce290a035a8fe0aa3e35582ca119cb), [commit](https://github.com/kraflab/dsda-doom/commit/ee84aef86f3d9005d30f330666e3c172f785c819)
+- comp_reservedlineflag: [commit](https://github.com/dsda-org/dsda-doom/commit/5287a80982ce290a035a8fe0aa3e35582ca119cb), [commit](https://github.com/dsda-org/dsda-doom/commit/ee84aef86f3d9005d30f330666e3c172f785c819)
   - When on: the line flag 0x0800 clears extended flags (`flags &= 0x01ff`).
   - When off: the line flag 0x0800 means nothing.
-- comp_thingsectorlight: [PR](https://github.com/kraflab/dsda-doom/pull/820)
+- comp_thingsectorlight: [PR](https://github.com/dsda-org/dsda-doom/pull/820)
   - When on: sprites that are on sectors using Boom's floor/ceiling transfered light levels will use the average of those two values.
   - When off: sprites will always be drawn with the Mobj's sector's light level.
 
@@ -586,46 +586,46 @@ Summary of comp flags since mbf in pr+ and changes:
 #### Fixes / adjustments since mbf
 - Fix 3 key door bug
   - Already fixed in pr+ / EE.
-  - [code](https://github.com/kraflab/dsda-doom/blob/61eac73ea246b48b17a30bc5a678a46b80d48fa1/prboom2/src/p_spec.c#L1086-L1090)
+  - [code](https://github.com/dsda-org/dsda-doom/blob/61eac73ea246b48b17a30bc5a678a46b80d48fa1/prboom2/src/p_spec.c#L1086-L1090)
 - Fix T_VerticalDoor mistake
   - Already fixed in pr+ / EE.
-  - [code](https://github.com/kraflab/dsda-doom/blob/cd2ce9f532a80b871f0fdef2ae3ce6331b6e47b4/prboom2/src/p_doors.c#L588-L589)
+  - [code](https://github.com/dsda-org/dsda-doom/blob/cd2ce9f532a80b871f0fdef2ae3ce6331b6e47b4/prboom2/src/p_doors.c#L588-L589)
 - Fix buggy comp_stairs implementation
   - Already fixed in pr+ / EE.
-  - [code](https://github.com/kraflab/dsda-doom/blob/6006aa42d3fba0ad2822ea35b144a921678821bf/prboom2/src/p_floor.c#L894-L895) and [code](https://github.com/kraflab/dsda-doom/blob/cd2ce9f532a80b871f0fdef2ae3ce6331b6e47b4/prboom2/src/p_floor.c#L934-L942)
+  - [code](https://github.com/dsda-org/dsda-doom/blob/6006aa42d3fba0ad2822ea35b144a921678821bf/prboom2/src/p_floor.c#L894-L895) and [code](https://github.com/dsda-org/dsda-doom/blob/cd2ce9f532a80b871f0fdef2ae3ce6331b6e47b4/prboom2/src/p_floor.c#L934-L942)
 - P_CreateSecNodeList global tmthing fix
   - Already fixed in pr+ / EE.
-  - [code](https://github.com/kraflab/dsda-doom/blob/cd2ce9f532a80b871f0fdef2ae3ce6331b6e47b4/prboom2/src/p_map.c#L2601-L2603)
+  - [code](https://github.com/dsda-org/dsda-doom/blob/cd2ce9f532a80b871f0fdef2ae3ce6331b6e47b4/prboom2/src/p_map.c#L2601-L2603)
 - A_CheckReload downstate
   - Already fixed in pr+ / EE.
-  - [code](https://github.com/kraflab/dsda-doom/blob/cd2ce9f532a80b871f0fdef2ae3ce6331b6e47b4/prboom2/src/p_pspr.c#L636-L643)
+  - [code](https://github.com/dsda-org/dsda-doom/blob/cd2ce9f532a80b871f0fdef2ae3ce6331b6e47b4/prboom2/src/p_pspr.c#L636-L643)
 - Fix P_DivlineSide bug
   - Already fixed in pr+ / EE.
-  - [code](https://github.com/kraflab/dsda-doom/blob/cd2ce9f532a80b871f0fdef2ae3ce6331b6e47b4/prboom2/src/p_sight.c#L408)
+  - [code](https://github.com/dsda-org/dsda-doom/blob/cd2ce9f532a80b871f0fdef2ae3ce6331b6e47b4/prboom2/src/p_sight.c#L408)
 - P_InterceptVector precision / overflow fix
   - Already fixed in pr+ / EE.
-  - [code](https://github.com/kraflab/dsda-doom/blob/cd2ce9f532a80b871f0fdef2ae3ce6331b6e47b4/prboom2/src/p_maputl.c#L161-L166)
+  - [code](https://github.com/dsda-org/dsda-doom/blob/cd2ce9f532a80b871f0fdef2ae3ce6331b6e47b4/prboom2/src/p_maputl.c#L161-L166)
 - Fix generalized crusher walkover lines
   - Already fixed in EE, but not in pr+.
-  - [commit](https://github.com/kraflab/dsda-doom/commit/76776f721b5d1d8a1a0ae95daab525cf8183ce44)
+  - [commit](https://github.com/dsda-org/dsda-doom/commit/76776f721b5d1d8a1a0ae95daab525cf8183ce44)
 - Fix blockmap issue seen in btsx e2 Map 20
   - Already fixed in EE, but not in pr+.
-  - [commit](https://github.com/kraflab/dsda-doom/commit/c31040e0df9c2bc0c865d84bd496840f8123984a)
+  - [commit](https://github.com/dsda-org/dsda-doom/commit/c31040e0df9c2bc0c865d84bd496840f8123984a)
 - Fix missing dropoff condition
   - Already fixed in pr+, but not in EE.
-  - [code](https://github.com/kraflab/dsda-doom/blob/cd2ce9f532a80b871f0fdef2ae3ce6331b6e47b4/prboom2/src/p_map.c#L1037)
+  - [code](https://github.com/dsda-org/dsda-doom/blob/cd2ce9f532a80b871f0fdef2ae3ce6331b6e47b4/prboom2/src/p_map.c#L1037)
   - [EE](https://github.com/team-eternity/eternity/blob/0fc2a38da688d9f5001fef723b40ef92c5db0956/source/p_map.cpp#L1342)
 - P_KillMobj thinker updates
   - Changed in pr+, reverted for mbf21.
-  - [commit](https://github.com/kraflab/dsda-doom/commit/c5d99305ef2aa79983f5e95ac6cdc13ce415b54c)
+  - [commit](https://github.com/dsda-org/dsda-doom/commit/c5d99305ef2aa79983f5e95ac6cdc13ce415b54c)
 - A_Mushroom changes
   - Changed in pr+, reverted for mbf21.
-  - [commit](https://github.com/kraflab/dsda-doom/commit/a330db45dee7f255510f6b2c06006e97dc04d578)
+  - [commit](https://github.com/dsda-org/dsda-doom/commit/a330db45dee7f255510f6b2c06006e97dc04d578)
 - Fix negative ammo counts
-  - [PR](https://github.com/kraflab/dsda-doom/pull/24)
+  - [PR](https://github.com/dsda-org/dsda-doom/pull/24)
 - Fix weapon autoswitch not taking DEHACKED ammotype changes into account
-  - [PR](https://github.com/kraflab/dsda-doom/pull/24)
+  - [PR](https://github.com/dsda-org/dsda-doom/pull/24)
 
 #### Important Notes
 - The default ammopershot value for fist / chainsaw is 1 (matters for backwards compatibility).
-- Depending on how your port has modified spawning code, you may have a lingering bug related to the validcount variable. Basically, in vanilla doom, this variable is incremented in the wrong position in P_CheckPosition. The explanation for why this is a problem is complicated, but ripper projectiles (and possibly other cases) will expose this bug and cause desyncs. If your port strives for demo compatibility, I recommend adding an extra validcount increment in P_CheckPosition before running the P_BlockLinesIterator, as was done in dsda-doom (wrap it in a compatibility check for mbf21 if necessary): [code](https://github.com/kraflab/dsda-doom/blob/5ebd1c7860fae536dc46e5a310acb98ca59a3165/prboom2/src/p_map.c#L916-L920). Without that fix, vanilla heretic demos go out of sync, and the same will be true for mbf21 demos with certain dehacked features in play. A port like crispy doom wouldn't be affected because it hasn't modified the spawn code in a way that introduces the bugged validcount. Ports like pr+ and ee do have this problem, for example.
+- Depending on how your port has modified spawning code, you may have a lingering bug related to the validcount variable. Basically, in vanilla doom, this variable is incremented in the wrong position in P_CheckPosition. The explanation for why this is a problem is complicated, but ripper projectiles (and possibly other cases) will expose this bug and cause desyncs. If your port strives for demo compatibility, I recommend adding an extra validcount increment in P_CheckPosition before running the P_BlockLinesIterator, as was done in dsda-doom (wrap it in a compatibility check for mbf21 if necessary): [code](https://github.com/dsda-org/dsda-doom/blob/5ebd1c7860fae536dc46e5a310acb98ca59a3165/prboom2/src/p_map.c#L916-L920). Without that fix, vanilla heretic demos go out of sync, and the same will be true for mbf21 demos with certain dehacked features in play. A port like crispy doom wouldn't be affected because it hasn't modified the spawn code in a way that introduces the bugged validcount. Ports like pr+ and ee do have this problem, for example.
